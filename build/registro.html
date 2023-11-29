@@ -4,14 +4,11 @@
     <title>Registro</title>
 </head>
 <body>
-    <h2>Registro</h2>
-    <form action="/registro" method="post">
-        Nome de usuário:<br>
-        <input type="text" name="nome">
-        <br>
-        Senha:<br>
-        <input type="password" name="senha">
-        <br><br>
+    <form action="/register" method="post">
+        <label for="username">Usuário:</label>
+        <input type="text" id="username" name="username"><br><br>
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password"><br><br>
         <input type="submit" value="Registrar">
     </form>
 </body>
