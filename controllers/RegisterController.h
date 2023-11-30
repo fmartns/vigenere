@@ -1,11 +1,12 @@
-#include "RegisterController.h"
+#pragma once
+#include <drogon/HttpController.h>
 
-void RegisterController::postRegister(const drogon::HttpRequestPtr &req, 
-                                      std::function<void (const drogon::HttpResponsePtr &)> &&callback) {
-    auto username = req->getParameter("username");
-    auto password = req->getParameter("password");
-    // Implemente a lógica para registrar o usuário, por exemplo, inserindo no banco de dados
-    auto response = drogon::HttpResponse::newHttpResponse();
-    response->setBody("Registro concluído!");
-    callback(response);
-}
+class RegisterController: public drogon::HttpController<RegisterController> {
+public:
+    METHOD_LIST_BEGIN
+    // Adicionar métodos para requisição aqui
+    METHOD_ADD(RegisterController::postRegister, "/register", drogon::Post);
+    METHOD_LIST_END
+
+    void postRegister(const drogon::HttpRequestPtr &req, std::function<void(const drogon::HttpResponsePtr &)> &&callback);
+};
