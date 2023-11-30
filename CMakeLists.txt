@@ -33,6 +33,9 @@ add_executable(${PROJECT_NAME} main.cc controllers/LoginController.cc controller
 find_package(Drogon CONFIG REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE Drogon::Drogon)
 
+# Adicionando explicitamente a flag para suporte ao PostgreSQL
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DHAS_POSTGRESQL")
+
 if (CMAKE_CXX_STANDARD LESS 17)
     message(FATAL_ERROR "c++17 or higher is required")
 elseif (CMAKE_CXX_STANDARD LESS 20)
