@@ -21,7 +21,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Adicionando os arquivos dos controladores ao executável
-add_executable(${PROJECT_NAME} main.cc LoginController.cc RegisterController.cc)
+# Os controladores estão na pasta 'controllers'
+add_executable(${PROJECT_NAME} main.cc controllers/LoginController.cc controllers/RegisterController.cc)
 
 # Se você incluir o código-fonte do drogon localmente no seu projeto, use este método
 # para adicionar drogon
