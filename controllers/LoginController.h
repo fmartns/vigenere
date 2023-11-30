@@ -1,15 +1,12 @@
 #pragma once
+#include <drogon/HttpController.h>
 
-#include <drogon/HttpSimpleController.h>
+class LoginController: public drogon::HttpController<LoginController> {
+public:
+    METHOD_LIST_BEGIN
+    // use METHOD_ADD para adicionar seus métodos de requisição
+    METHOD_ADD(LoginController::postLogin,"/login", drogon::Post);
+    METHOD_LIST_END
 
-using namespace drogon;
-
-class LoginController : public drogon::HttpSimpleController<LoginController>
-{
-  public:
-    void asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback) override;
-    PATH_LIST_BEGIN
-    // list path definitions here;
-    // PATH_ADD("/path", "filter1", "filter2", HttpMethod1, HttpMethod2...);
-    PATH_LIST_END
+    void postLogin(const drogon::HttpRequestPtr& req, std::function<void (const drogon::HttpResponsePtr &)> &&callback);
 };
