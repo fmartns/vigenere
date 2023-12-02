@@ -1,6 +1,4 @@
 #include <drogon/drogon.h>
-#include "LoginController.h"
-#include "RegisterController.h"
 
 using namespace drogon;
 using namespace std;
