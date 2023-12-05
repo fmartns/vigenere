@@ -21,9 +21,17 @@
         }
     ],
     "document_root": "./build",
+    "routes": [
+        {
+            "path": "/register",
+            "local_path": "register.html",
+            "http_methods": ["GET"]
+        }
+    ],
     "enable_session": true,
     "session_timeout": 1200,
     "upload_path": "uploads",
     "log_path": "logs",
     "log_level": "trace"
 }
+

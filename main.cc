@@ -1,12 +1,14 @@
+
 #include <drogon/drogon.h>
+#include "controllers/Login.h"
+#include "controllers/Register.h"
 
 using namespace drogon;
-using namespace std;
 
 int main() {
 
     drogon::app().loadConfigFile("../config.json");
-    drogon::app().run();
+
+    app().run();
     return 0;
-    
 }
