@@ -28,10 +28,20 @@
             "http_methods": ["GET"]
         }
     ],
-    "enable_session": true,
-    "session_timeout": 1200,
+    "session": [
+        {
+            "enable_session": true,
+            "session_timeout": 1200
+        }
+    ],
     "upload_path": "uploads",
     "log_path": "logs",
-    "log_level": "trace"
+    "log_level": "trace",
+    "cors": {
+        "allow_origins": ["*"],
+        "allow_methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["DNT", "X-CustomHeader", "Keep-Alive", "User-Agent", "X-Requested-With", "If-Modified-Since", "Cache-Control", "Content-Type", "Authorization", "Cookie"],
+        "allow_credentials": true,
+        "max_age": 3600
+    }
 }
-

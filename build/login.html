@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Login de Usuário</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <form action="/doLogin" method="post">
-        Username: <input type="text" name="username"><br>
-        Password: <input type="password" name="password"><br>
-        <input type="submit" value="Login">
+    <form id="loginForm">
+        <label for="username">Usuário:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Senha:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <input type="button" id="loginBtn" value="Login">
     </form>
+    <div id="message"></div>
+
+    <script>
+        $(document).ready(function() {
+            $("#loginBtn").click(function() {
+                var username = $("#username").val();
+                var password = $("#password").val();
+
+                $.ajax({
+                    url: '/GetLogin',
+                    type: 'POST',
+                    data: {
+                        username: username,
+                        password: password
+                    },
+                    success: function(response) {
+                        $("#message").text(response.message);
+                        if (response.success) {
+                            // Redirecionar para a página principal ou dashboard
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        $("#message").text("Erro ao logar: " + xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
