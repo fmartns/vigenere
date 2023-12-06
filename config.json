@@ -28,10 +28,10 @@
             "http_methods": ["GET"]
         }
     ],
-    "session": [
+    "nkmt": [
         {
             "enable_session": true,
-            "session_timeout": 1200
+            "session_timeout": 12000000
         }
     ],
     "upload_path": "uploads",

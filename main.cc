@@ -7,7 +7,7 @@ using namespace drogon;
 
 int main() {
 
-    drogon::app().enableSession(true);
+    drogon::app().enableSession(1200);
 
     drogon::app().loadConfigFile("../config.json");
 
