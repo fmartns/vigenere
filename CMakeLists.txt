@@ -74,3 +74,6 @@ target_sources(${PROJECT_NAME}
 # set_property(TARGET ${PROJECT_NAME} PROPERTY ENABLE_EXPORTS ON)
 
 add_subdirectory(test)
+
+target_link_libraries(nkmt PRIVATE hpdf)
+

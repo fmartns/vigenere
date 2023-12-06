@@ -26,6 +26,11 @@
             "path": "/register",
             "local_path": "register.html",
             "http_methods": ["GET"]
+        },
+        {
+            "path": "/relatorios",
+            "local_path": "index.html",
+            "http_methods": ["GET"]
         }
     ],
     "nkmt": [

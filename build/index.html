@@ -1,32 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Inicial</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="addons/js/index.js"></script>
+    <script src="addons/js/SessionChecker.js"></script>
+    <link rel="stylesheet" href="./addons/css/style.css">
 </head>
-<body>
-    <div id="welcomeMessage">Carregando...</div>
 
-    <script>
-        $(document).ready(function() {
-            $.ajax({
-                url: '/checkSession', // Endpoint que verifica a sessão
-                type: 'GET',
-                success: function(response) {
-                    if (response.loggedIn) {
-                        // Se o usuário estiver logado, exibe a mensagem de boas-vindas
-                        $("#welcomeMessage").html("Seja bem-vindo, " + response.username + "!");
-                    } else {
-                        // Se o usuário não estiver logado, redireciona para login.html
-                        window.location.href = '/login.html';
-                    }
-                },
-                error: function() {
-                    // Em caso de erro na requisição, redireciona também
-                    window.location.href = '/login.html';
-                }
-            });
-        });
-    </script>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-brand">NKMT</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Relatório</a></li>
+            <li><a href="#">Criptografia</a></li>
+            <li><a href="#">Agradecimentos</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+
+    <script src="index.js"></script>
+
+    <div class="msg">
+        <p>Olá <span id="user">User</span>! você está logado. Deseja fazer logout? <a href="#logout">clique aqui</a></p>
+    </div>
+
 </body>
 </html>
