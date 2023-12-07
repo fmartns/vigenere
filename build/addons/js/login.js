@@ -11,9 +11,11 @@ $(document).ready(function() {
                 password: password
             },
             success: function(response) {
-                $("#message").text("Logado com sucesso!");
                 if (response.success) {
                     window.location.href = '/index.html';
+                    $("#message").text("Logado com sucesso!");
+                } else {
+                    $("#message").text("Erro ao logar");
                 }
             },
             error: function(xhr, status, error) {

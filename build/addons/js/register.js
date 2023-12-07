@@ -11,10 +11,10 @@ $(document).ready(function() {
                 password: password
             },
             success: function(response) {
-                $("#message").text(response);
+                $("#message").text("Usuário registrado com sucesso.");
             },
             error: function(xhr, status, error) {
-                $("#message").text("Erro ao registrar: " + xhr.responseText);
+                $("#message").text("Erro ao registrar.");
             }
         });
     });
