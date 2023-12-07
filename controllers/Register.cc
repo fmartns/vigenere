@@ -89,6 +89,21 @@ void Register::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<v
         auto username = req->getParameter("username");
         auto password = req->getParameter("password");
         
+        set<char> validChars = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '@', '#', '$', '%', '&', '*', '(', ')'};
+
+        // Verifica se o username contém apenas caracteres válidos
+        for (char c : username) {
+            if (validChars.find(c) == validChars.end()) {
+                auto response = HttpResponse::newHttpResponse();
+                response->setStatusCode(k400BadRequest);
+                Json::Value ret;
+                ret["message"] = "Nome de usuário contém caracteres inválidos.";
+                response->setBody(ret.toStyledString());
+                callback(response);
+                return;
+            }
+        }
+
         while (key.length() < password.length()){
             key += "teste";
         }
