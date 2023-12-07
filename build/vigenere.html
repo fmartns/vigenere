@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vigenere Cipher</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#submitBtn").click(function() {
+                var word = $("#word").val();
+
+                $.ajax({
+                    url: '/vigenere',
+                    type: 'POST',
+                    data: { word: word },
+                    success: function(response) {
+                        $("#originalWord").text("Original: " + response.original);
+                        $("#processedWord").text("Processed: " + response.processed);
+                    },
+                    error: function(xhr, status, error) {
+                        $("#message").text("Error processing word.");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <form id="vigenereForm">
+        <div id="message"></div>
+        <label for="word">Word:</label><br>
+        <input type="text" id="word" name="word"><br><br>
+        <input type="button" id="submitBtn" value="Submit">
+        <div id="originalWord"></div>
+        <div id="processedWord"></div>
+    </form>
+</body>
+</html>
