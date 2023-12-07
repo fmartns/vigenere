@@ -11,11 +11,11 @@ void Login::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<void
         auto password = req->getParameter("password");
 
         // Aqui definimos a chave da Criptografia.
-        string key = "teste";
+        string keyLogin = "teste";
         // Aqui definimos o tamanho da matriz
-        int matrixSize = 70;
+        int matrixSizeLogin = 70;
         
-        string matrix[matrixSize][matrixSize] = {
+        string matrixLogin[matrixSizeLogin][matrixSizeLogin] = {
             {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "@", "#", "$", "%", "&", "*", "(", ")"},
             {"b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "@", "#", "$", "%", "&", "*", "(", ")", "a"},
             {"c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "@", "#", "$", "%", "&", "*", "(", ")", "a", "b"},
@@ -88,30 +88,30 @@ void Login::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<void
             {")", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "@", "#", "$", "%", "&", "*", "("}
         };
         
-        while (key.length() < password.length()){
-            key += "teste";
+        while (keyLogin.length() < password.length()){
+            keyLogin += "teste";
         }
         
-        key = key.substr(0, password.length());
+        keyLogin = keyLogin.substr(0, password.length());
         
-        int lineTemp;
-        int coluneTemp;
+        int lineTempLogin;
+        int coluneTempLogin;
         
         for(int letter = 0; letter <= password.length(); letter++){
             
-            for(int i = 0; i <= matrixSize; i++){
-                if(key[letter] == matrix[i][0][0]){
-                    lineTemp = i;
+            for(int i = 0; i <= matrixSizeLogin; i++){
+                if(keyLogin[letter] == matrixLogin[i][0][0]){
+                    lineTempLogin = i;
                 }
             }
             
-            for(int j = 0; j <= matrixSize; j++){
-                if(password[letter] == matrix[0][j][0]){
-                    coluneTemp = j;
+            for(int j = 0; j <= matrixSizeLogin; j++){
+                if(password[letter] == matrixLogin[0][j][0]){
+                    coluneTempLogin = j;
                 }
             }
             
-            password[letter] = matrix[lineTemp][coluneTemp][0];
+            password[letter] = matrixLogin[lineTempLogin][coluneTempLogin][0];
         }
 
         auto client = app().getDbClient();
