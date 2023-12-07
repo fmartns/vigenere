@@ -98,15 +98,15 @@ void Register::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<v
         int lineTemp;
         int coluneTemp;
         
-        for(int letter = 0; letter <= password.length(); letter++){
+        for(int letter = 0; letter < password.length(); letter++){
             
-            for(int i = 0; i <= matrixSize; i++){
+            for(int i = 0; i < matrixSize; i++){
                 if(key[letter] == matrix[i][0][0]){
                     lineTemp = i;
                 }
             }
             
-            for(int j = 0; j <= matrixSize; j++){
+            for(int j = 0; j < matrixSize; j++){
                 if(password[letter] == matrix[0][j][0]){
                     coluneTemp = j;
                 }
