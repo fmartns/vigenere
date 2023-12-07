@@ -1,18 +1,17 @@
 #include "CheckSessionController.h"
 #include <json/json.h>
 
-void CheckSessionController::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback) {
+using namespace std;
+
+void CheckSessionController::asyncHandleHttpRequest(const HttpRequestPtr& req, function<void (const HttpResponsePtr &)> &&callback) {
     auto session = req->getSession();
     Json::Value ret;
 
-    // Verifique se a sessão tem um nome de usuário
     if (session->find("username")) {
-        // Usuário está logado
         ret["loggedIn"] = true;
-        ret["username"] = session->get<std::string>("username");
-        LOG_INFO << "Usuário autenticado: " << session->get<std::string>("username");
+        ret["username"] = session->get<string>("username");
+        LOG_INFO << "Usuário autenticado: " << session->get<string>("username");
     } else {
-        // Usuário não está logado
         ret["loggedIn"] = false;
         LOG_INFO << "Nenhuma sessão de usuário encontrada";
     }

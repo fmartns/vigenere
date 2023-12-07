@@ -5,11 +5,9 @@
 
 using namespace std;
 
-void Login::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback) {
+void Login::asyncHandleHttpRequest(const HttpRequestPtr& req, function<void (const HttpResponsePtr &)> &&callback) {
 
-    // Aqui definimos a chave da Criptografia.
-    string key = "teste";
-    // Aqui definimos o tamanho da matriz
+    string key = "UNIVALI";
     int matrixSize = 70;
     
     string matrix[matrixSize][matrixSize] = {
@@ -90,7 +88,7 @@ void Login::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<void
         auto password = req->getParameter("password");
 
         while (key.length() < password.length()){
-            key += "teste";
+            key += "UNIVALI";
         }
         
         key = key.substr(0, password.length());
@@ -121,19 +119,15 @@ void Login::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<void
             [req, callback](const drogon::orm::Result &r) {
                 Json::Value ret;
                 if (r.size() > 0) {
-                    // Usuário encontrado e senha correta
                     ret["message"] = "Login bem-sucedido";
                     ret["success"] = true;
 
-                    // Criar uma sessão para o usuário
                     auto session = req->getSession();
-                    session->insert("username", r[0]["username"].as<std::string>());
-                    // Você pode adicionar mais dados à sessão conforme necessário
+                    session->insert("username", r[0]["username"].as<string>());
 
-                    LOG_INFO << "Sessão criada para o usuário: " << r[0]["username"].as<std::string>();
+                    LOG_INFO << "Sessão criada para o usuário: " << r[0]["username"].as<string>();
                     
                 } else {
-                    // Usuário não encontrado ou senha incorreta
                     ret["message"] = "Usuário ou senha incorretos";
                     ret["success"] = false;
                 }
@@ -142,7 +136,7 @@ void Login::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<void
             },
             [callback](const drogon::orm::DrogonDbException &e) {
                 Json::Value ret;
-                ret["message"] = std::string("Erro no banco de dados: ") + e.base().what();
+                ret["message"] = string("Erro no banco de dados: ") + e.base().what();
                 auto response = HttpResponse::newHttpJsonResponse(ret);
                 response->setStatusCode(k500InternalServerError);
                 callback(response);
@@ -152,7 +146,6 @@ void Login::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<void
         return;
     }
 
-    // Se o método HTTP não for POST
     auto resp = drogon::HttpResponse::newHttpResponse();
     resp->setStatusCode(k405MethodNotAllowed);
     callback(resp);

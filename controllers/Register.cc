@@ -5,10 +5,9 @@
 
 using namespace std;
 
-void Register::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback) {
+void Register::asyncHandleHttpRequest(const HttpRequestPtr& req, function<void (const HttpResponsePtr &)> &&callback) {
     // Aqui definimos a chave da Criptografia.
-    string key = "teste";
-    // Aqui definimos o tamanho da matriz
+    string key = "UNIVALI";
     int matrixSize = 70;
     
     string matrix[matrixSize][matrixSize] = {
@@ -84,7 +83,6 @@ void Register::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<v
         {")", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "@", "#", "$", "%", "&", "*", "("}
     };    
     
-    // Lida com requisições POST para registro de usuário
     if (req->getMethod() == drogon::HttpMethod::Post) {
         auto username = req->getParameter("username");
         auto password = req->getParameter("password");
@@ -100,7 +98,6 @@ void Register::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<v
             return;
         }
 
-        // Verifica se o nome de usuário contém apenas letras, números e '_'
         regex usernameRegex("^[A-Za-z0-9_]+$");
         if(!regex_match(username, usernameRegex)) {
             Json::Value ret;
@@ -111,7 +108,6 @@ void Register::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<v
             return;
         }
 
-        // Verifica se o username contém apenas caracteres válidos
         for (char c : password) {
             if (validChars.find(c) == validChars.end()) {
                 auto response = HttpResponse::newHttpResponse();
@@ -125,7 +121,7 @@ void Register::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<v
         }
 
         while (key.length() < password.length()){
-            key += "teste";
+            key += "UNIVALI";
         }
         
         key = key.substr(0, password.length());
@@ -162,7 +158,7 @@ void Register::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<v
             },
             [callback](const drogon::orm::DrogonDbException &e) {
                 Json::Value ret;
-                ret["message"] = std::string("Erro no banco de dados: ") + e.base().what();
+                ret["message"] = string("Erro no banco de dados: ") + e.base().what();
                 auto response = HttpResponse::newHttpJsonResponse(ret);
                 response->setStatusCode(k500InternalServerError);
                 callback(response);
@@ -172,7 +168,6 @@ void Register::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<v
         return;
     }
 
-    // Se o método HTTP não for POST
     auto resp = drogon::HttpResponse::newHttpResponse();
     resp->setStatusCode(k405MethodNotAllowed);
     callback(resp);

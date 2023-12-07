@@ -21,24 +21,6 @@
         }
     ],
     "document_root": "./build",
-    "routes": [
-        {
-            "path": "/register",
-            "local_path": "register.html",
-            "http_methods": ["GET"]
-        },
-        {
-            "path": "/relatorios",
-            "local_path": "index.html",
-            "http_methods": ["GET"]
-        }
-    ],
-    "nkmt": [
-        {
-            "enable_session": true,
-            "session_timeout": 12000000
-        }
-    ],
     "upload_path": "uploads",
     "log_path": "logs",
     "log_level": "trace",

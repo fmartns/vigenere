@@ -4,11 +4,10 @@
 
 using namespace std;
 
-void Vigenere::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<void(const HttpResponsePtr &)> &&callback) {
+void Vigenere::asyncHandleHttpRequest(const HttpRequestPtr& req, function<void(const HttpResponsePtr &)> &&callback) {
 
     // Aqui definimos a chave da Criptografia.
-    string key = "teste";
-    // Aqui definimos o tamanho da matriz
+    string key = "UNIVALI";
     int matrixSize = 70;
     
     string matrix[matrixSize][matrixSize] = {
@@ -89,7 +88,7 @@ void Vigenere::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<v
 
         
         while (key.length() < inputWord.length()){
-        key += "teste";
+        key += "UNIVALI";
         }
         
         key = key.substr(0, inputWord.length());
@@ -113,7 +112,7 @@ void Vigenere::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<v
             inputWord[letter] = matrix[0][coluneTemp][0];
         }
 
-        std::string processedWord = inputWord; // Substitua por sua lógica de processamento
+        string processedWord = inputWord; // Substitua por sua lógica de processamento
 
         Json::Value ret;
         ret["original"] = inputWord;
