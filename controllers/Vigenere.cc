@@ -97,14 +97,14 @@ void Vigenere::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<v
         int lineTemp;
         int coluneTemp;
         
-        for(int letter = 0; letter <= inputWord.length(); letter++){
-            for(int i = 0; i <= matrixSize; i++){
+        for(int letter = 0; letter < inputWord.length(); letter++){
+            for(int i = 0; i < matrixSize; i++){
                 if(key[letter] == matrix[i][0][0]){
                     lineTemp = i;
                 }
             }
             
-            for(int j = 0; j <= matrixSize; j++){
+            for(int j = 0; j < matrixSize; j++){
                 if(inputWord[letter] == matrix[lineTemp][j][0]){
                     coluneTemp = j;
                 }
