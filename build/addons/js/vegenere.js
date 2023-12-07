@@ -7,7 +7,7 @@ $(document).ready(function() {
             type: 'POST',
             data: { word: word },
             success: function(response) {
-                $("#processedWord").text("Processed: " + response.processed);
+                $("#processedWord").text(response.processed);
             },
             error: function(xhr, status, error) {
                 $("#message").text("Erro ao descriptografar.");
