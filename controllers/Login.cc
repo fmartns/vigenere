@@ -6,7 +6,7 @@
 using namespace std;
 
 void Login::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback) {
-    
+
     // Aqui definimos a chave da Criptografia.
     string key = "teste";
     // Aqui definimos o tamanho da matriz
@@ -83,36 +83,36 @@ void Login::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<void
         {"*", "(", ")", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "@", "#", "$", "%", "&"},
         {"(", ")", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "@", "#", "$", "%", "&", "*"},
         {")", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "@", "#", "$", "%", "&", "*", "("}
-    }    
-    
+    }; 
+
     if (req->getMethod() == drogon::HttpMethod::Post) {
         auto username = req->getParameter("username");
         auto password = req->getParameter("password");
-        
-        while (keyLogin.length() < password.length()){
-            keyLogin += "teste";
+
+        while (key.length() < password.length()){
+            key += "teste";
         }
         
-        keyLogin = keyLogin.substr(0, password.length());
+        key = key.substr(0, password.length());
         
-        int lineTempLogin;
-        int coluneTempLogin;
+        int lineTemp;
+        int coluneTemp;
         
         for(int letter = 0; letter < password.length(); letter++){
             
-            for(int i = 0; i < matrixSizeLogin; i++){
-                if(keyLogin[letter] == matrixLogin[i][0][0]){
-                    lineTempLogin = i;
+            for(int i = 0; i < matrixSize; i++){
+                if(key[letter] == matrix[i][0][0]){
+                    lineTemp = i;
                 }
             }
             
-            for(int j = 0; j < matrixSizeLogin; j++){
-                if(password[letter] == matrixLogin[0][j][0]){
-                    coluneTempLogin = j;
+            for(int j = 0; j < matrixSize; j++){
+                if(password[letter] == matrix[0][j][0]){
+                    coluneTemp = j;
                 }
             }
             
-            password[letter] = matrixLogin[lineTempLogin][coluneTempLogin][0];
+            password[letter] = matrix[lineTemp][coluneTemp][0];
         }
 
         auto client = app().getDbClient();
