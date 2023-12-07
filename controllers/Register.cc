@@ -3,6 +3,8 @@
 #include <drogon/orm/DbClient.h>
 #include <json/json.h>
 
+using namespace std;
+
 void Register::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback) {
 
     // Aqui definimos a chave da Criptografia.
@@ -110,7 +112,7 @@ void Register::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<v
                     coluneTemp = j;
                 }
             }
-            
+
             password[letter] = matrix[lineTemp][coluneTemp][0];
         }
 
