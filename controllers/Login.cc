@@ -3,6 +3,8 @@
 #include <drogon/orm/DbClient.h>
 #include <json/json.h>
 
+using namespace std;
+
 void Login::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback) {
     if (req->getMethod() == drogon::HttpMethod::Post) {
         auto username = req->getParameter("username");
