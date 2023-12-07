@@ -3,9 +3,9 @@
 #include <drogon/orm/DbClient.h>
 #include <json/json.h>
 
-using namespace std;
+using namespace std; // Usando o namespace std
 
-void Login::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback) {
+void Login::asyncHandleHttpRequest(const HttpRequestPtr& req, function<void (const HttpResponsePtr &)> &&callback) {
     
     // Aqui definimos a chave da Criptografia.
     string key = "UNIVALI";
@@ -89,8 +89,8 @@ void Login::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<void
         auto username = req->getParameter("username");
         auto password = req->getParameter("password");
 
-                while (key.length() < password.length()){
-        key += "UNIVALI";
+        while (key.length() < password.length()){
+            key += "UNIVALI";
         }
         
         key = key.substr(0, password.length());
@@ -127,10 +127,10 @@ void Login::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<void
 
                     // Criar uma sessão para o usuário
                     auto session = req->getSession();
-                    session->insert("username", r[0]["username"].as<std::string>());
+                    session->insert("username", r[0]["username"].as<string>());
                     // Você pode adicionar mais dados à sessão conforme necessário
 
-                    LOG_INFO << "Sessão criada para o usuário: " << r[0]["username"].as<std::string>();
+                    LOG_INFO << "Sessão criada para o usuário: " << r[0]["username"].as<string>();
                     
                 } else {
                     // Usuário não encontrado ou senha incorreta
@@ -142,7 +142,7 @@ void Login::asyncHandleHttpRequest(const HttpRequestPtr& req, std::function<void
             },
             [callback](const drogon::orm::DrogonDbException &e) {
                 Json::Value ret;
-                ret["message"] = std::string("Erro no banco de dados: ") + e.base().what();
+                ret["message"] = string("Erro no banco de dados: ") + e.base().what();
                 auto response = HttpResponse::newHttpJsonResponse(ret);
                 response->setStatusCode(k500InternalServerError);
                 callback(response);
