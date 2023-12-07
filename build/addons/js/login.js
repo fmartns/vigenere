@@ -22,5 +22,7 @@ $(document).ready(function() {
                 $("#message").text("Erro ao logar");
             }
         });
+        $('#username').val('');
+        $('#password').val('');
     });
 });

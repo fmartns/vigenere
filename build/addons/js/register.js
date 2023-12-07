@@ -17,5 +17,7 @@ $(document).ready(function() {
                 $("#message").text("Erro ao registrar.");
             }
         });
+        $('#username').val('');
+        $('#password').val('');
     });
 });
