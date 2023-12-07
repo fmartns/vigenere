@@ -1,37 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <title>Vigenere Cipher</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("#submitBtn").click(function() {
-                var word = $("#word").val();
-
-                $.ajax({
-                    url: '/vigenere',
-                    type: 'POST',
-                    data: { word: word },
-                    success: function(response) {
-                        $("#originalWord").text("Original: " + response.original);
-                        $("#processedWord").text("Processed: " + response.processed);
-                    },
-                    error: function(xhr, status, error) {
-                        $("#message").text("Error processing word.");
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="addons/js/index.js"></script>
+    <script src="addons/js/vegenere.js"></script>
+    <link rel="stylesheet" href="./addons/css/style.css">
 </head>
-<body>
+
+<body class="vegenereBody">
+
+    <nav class="navbar">
+        <div class="navbar-brand">NKMT</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="/usersList">Relatório</a></li>
+            <li><a href="/vigenere.html">Descriptografar</a></li>
+            <li><a href="#">Agradecimentos</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+
+    <script src="index.js"></script>
+
     <form id="vigenereForm">
         <div id="message"></div>
-        <label for="word">Word:</label><br>
+        <label for="word">Digite uma palavra:</label><br>
         <input type="text" id="word" name="word"><br><br>
         <input type="button" id="submitBtn" value="Submit">
-        <div id="originalWord"></div>
-        <div id="processedWord"></div>
+        <p>Palavra original: <span id="processedWord"></span></p>
     </form>
+
 </body>
 </html>

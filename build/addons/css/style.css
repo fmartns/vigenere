@@ -201,9 +201,6 @@ body {
     text-decoration: underline;
 }
 
-
-/**/
-
 .registerBody {
     height: 100%;
     margin: 0;
@@ -271,4 +268,69 @@ body {
 
 .login-link:hover {
     text-decoration: underline;
+}
+
+.vegenereBody {
+    position: relative;
+    height: 100%;
+}
+
+.vegenereBody form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    text-align: center;
+}
+
+#vigenereForm {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    /* Removido margin: 0 auto; */
+}
+
+#vigenereForm label {
+    font-weight: bold;
+    color: #333;
+}
+
+#vigenereForm input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+#vigenereForm input[type="button"] {
+    background-color: #5809b3;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 4px;
+}
+
+#vigenereForm input[type="button"]:hover {
+    background-color: #5809b3;
+}
+
+#vigenereForm p {
+    color: #333;
+    text-align: center;
+    margin-top: 15px;
+}
+
+#vigenereForm p span {
+    color: #5809b3;
+    text-align: center;
+    margin-top: 15px;
 }
