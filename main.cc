@@ -2,7 +2,7 @@
 #include <controllers/Login.h>
 #include <controllers/Register.h>
 #include <CheckSessionController.h>
-#include <controllers/Vegenere.h>
+#include <controllers/Vigenere.h>
 
 using namespace drogon;
 
