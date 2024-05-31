@@ -1,4 +1,4 @@
-![Logo](https://i.imgur.com/jlQ2LPY.png)
+![Logo](https://i.imgur.com/IbdF2Wg.png)
 
 Este projeto representa um sistema de registro abrangente que implementa uma versão aprimorada da Cifra de Vigenère. Esta versão adaptada é capaz de manipular uma gama mais ampla de caracteres, incluindo letras maiúsculas, minúsculas, números e caracteres especiais.
 
@@ -14,7 +14,7 @@ Veja como usar o projeto:
 Clone o repositório
 
 ```bash
-  git clone https://github.com/fmartns/nkmt
+  git clone https://github.com/fmartns/vigenere
 ```
 
 Acesse a build e compile
@@ -28,7 +28,7 @@ Acesse a build e compile
 Execute o projeto
 
 ```bash
-  sudo ./nkmt
+  sudo ./vigenere
 ```
     
 ## Criadores
